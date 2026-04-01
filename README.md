@@ -1,14 +1,23 @@
-# Forge Themes
 
+<div align="center">
+
+<img src="./resources/icon.png" alt="Forge Themes Logo" width="200"/>
+
+<br/>
+
+# FORGE &nbsp;·&nbsp; THEMES
 > Colour crafted at the forge.
 
----
+</div>
 
 <div align="center">
 
 ![Status](https://img.shields.io/badge/status-active-63C5EA?style=flat-square&labelColor=404E5C)
 ![License](https://img.shields.io/badge/license-MIT-9F7EBE?style=flat-square&labelColor=404E5C)
 ![Org](https://img.shields.io/badge/org-fynes--forge-ECDA90?style=flat-square&labelColor=404E5C)
+![TypeScript](https://img.shields.io/badge/TypeScript-v5.4-83AFDF?style=flat-square&labelColor=404E5C&logo=typescript&logoColor=white)
+![Build](https://img.shields.io/github/actions/workflow/status/fynes-forge/forge-themes/ci.yml?style=flat-square&logo=github)
+![Release](https://img.shields.io/github/v/release/fynes-forge/forge-themes?style=flat-square)
 
 </div>
 
