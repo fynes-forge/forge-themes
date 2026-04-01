@@ -47,9 +47,9 @@
     "publish": "npm run generate && vsce publish"
   },
   "devDependencies": {
-    "@types/node": "^20.0.0",
-    "@vscode/vsce": "^2.24.0",
+    "@types/node": "^25.5.0",
+    "@vscode/vsce": "^3.7.1",
     "ts-node": "^10.9.2",
-    "typescript": "^5.4.5"
+    "typescript": "^6.0.2"
   }
 }
