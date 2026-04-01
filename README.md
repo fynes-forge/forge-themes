@@ -1,6 +1,6 @@
-# forge-template
+# Forge Themes
 
-> **Fynes Forge** · Official repository template. Replace this line with a one-sentence description of what this repo does.
+> Colour crafted at the forge.
 
 ---
 
@@ -16,65 +16,109 @@
 
 ## Overview
 
-<!-- Replace this section with a clear description of the project.
-     Answer: what does it do, who is it for, and why does it exist? -->
+A VS Code colour theme collection built on the [Fynes Forge](https://github.com/fynes-forge) brand palette.
 
+Every theme is written in TypeScript and compiled to VS Code–compatible JSON via a generator script — no hand-edited JSON, full type safety.
 This is a Fynes Forge project built with **precision over cleverness**.
 
 ---
 
-## Getting Started
+## Themes
 
-See [GETTING_STARTED.md](./docs/GETTING_STARTED.md) for full setup instructions.
+### 🔩 Forge
+The canonical brand experience. Deep workshop blues (`#1C2329`), lavender text, gold accents and pink highlights, exactly as defined in the Fynes Forge brand identity.
 
-**Quick start:**
+### ☀️ Dayforge
+Crisp lavender-white background with brand colours deepened for full readability. The same DNA as Forge, adapted for bright environments.
+
+### 🔥 Hearthforge
+A warm dark counterpart. Charred brown backgrounds replace the cool blues, while brand lavender and cyan remain as cool sparks against the heat.
+
+### ⚔️ Cold Forge
+Maximum contrast dark theme. Near-black backgrounds, bright crisp text, and brand accent colours turned up to full saturation. For those who code in the void.
+
+---
+
+## Colour Palette
+
+All themes derive from the Fynes Forge brand palette:
+
+| Token         | Hex       | Role                    |
+|---------------|-----------|-------------------------|
+| Dark Blue     | `#404E5C` | Background              |
+| Steel Blue    | `#4F6272` | Inactive / muted        |
+| Lavender      | `#B7C3F3` | Main text               |
+| Pink          | `#DD7596` | Keywords                |
+| Gold          | `#ECDA90` | Accents / properties    |
+| Light Blue    | `#83AFDF` | Strings                 |
+| Bright Cyan   | `#63C5EA` | Functions               |
+| Pale Blue     | `#AED6F1` | Parameters              |
+| Deep Lavender | `#9F7EBE` | Punctuation / operators |
+| Deep Pink     | `#D05786` | Constants / numbers     |
+
+---
+
+# Development
+
+The themes are generated from TypeScript source files — never edit the JSON files directly.
+
+### Prerequisites
+- Node.js ≥ 18
+- npm
+
+### Setup
 
 ```bash
-# Clone the repo
-git clone https://github.com/fynes-forge/<repo-name>.git
-cd <repo-name>
+npm install
+```
 
-# Install dependencies
-pip install -r requirements.txt   # Python
-# or
-npm install                        # Node / TypeScript
+### Generate themes
 
-# Run
-python src/main.py
-# or
-npm start
+```bash
+npm run generate
+```
+
+This runs `src/generate.ts` via `ts-node` and writes all `*-color-theme.json` files into `./themes/`.
+
+### Package as VSIX
+
+```bash
+npm run package
+```
+
+### Project structure
+
+```
+forge-themes/
+├── src/
+│   ├── palette.ts          ← Single source of truth for all brand colours
+│   ├── types.ts            ← VS Code theme type definitions
+│   ├── generate.ts         ← Generator script — run this to build JSON
+│   ├── index.ts            ← Barrel export
+│   └── themes/
+│       ├── forge.ts            # Forge (dark)
+│       ├── dayforge.ts         # Dayforge (light)
+│       ├── hearthforge.ts      # Hearthforge (warm dark variant)
+│       └── cold-forge.ts       # Cold Forge (high-contrast dark variant)
+├── themes/                 ← Generated JSON (do not edit manually)
+├── package.json
+├── tsconfig.json
+└── README.md
 ```
 
 ---
 
-## Documentation
+## Installation
 
-| Document | Description |
-|---|---|
-| [GETTING_STARTED.md](./docs/GETTING_STARTED.md) | Installation, setup, and first run |
-| [CONTRIBUTING.md](./CONTRIBUTING.md) | How to contribute to this project |
-| [CHANGELOG.md](./CHANGELOG.md) | Version history and release notes |
-| [AGENTS.md](./AGENTS.md) | AI agent context and conventions |
+### From Marketplace
+1. Open VS Code → Extensions (`Ctrl+Shift+X`)
+2. Search **Forged in Fynes**
+3. Install, then open **Preferences: Color Theme** (`Ctrl+K Ctrl+T`)
+4. Select your variant
 
----
-
-## Project Structure
-
-```
-<repo-name>/
-├── .github/
-│   ├── workflows/          ← CI/CD pipelines
-│   ├── ISSUE_TEMPLATE/     ← Bug reports, feature requests
-│   ├── PULL_REQUEST_TEMPLATE/
-│   └── copilot/            ← GitHub Copilot instructions
-├── docs/                   ← Documentation
-├── src/                    ← Source code
-├── tests/                  ← Test suite
-├── AGENTS.md               ← AI agent conventions
-├── CONTRIBUTING.md         ← Contribution guide
-├── CHANGELOG.md            ← Release history
-└── README.md               ← This file
-```
+### From VSIX
+1. Download the latest `.vsix` from [Releases](https://github.com/fynes-forge/forged-in-fynes/releases)
+2. Extensions panel → `...` → **Install from VSIX**
 
 ---
 

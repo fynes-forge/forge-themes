@@ -6,7 +6,7 @@
 
 ## Organisation & Project
 
-You are assisting with a **Fynes Forge** project. Fynes Forge is the open source engineering organisation of Tom Fynes, a Senior Data Engineer. Projects focus on data engineering, Python tooling, and technical education.
+You are assisting with a **Fynes Forge** project. Fynes Forge is the open source engineering organisation of Tom Fynes, a Senior Data Engineer. This repository is **Forge Themes** — a VS Code colour theme extension built in TypeScript, with all themes generated from a single brand palette source of truth.
 
 Apply the conventions in `AGENTS.md` at all times unless explicitly overridden in a specific file or comment.
 
@@ -14,78 +14,62 @@ Apply the conventions in `AGENTS.md` at all times unless explicitly overridden i
 
 ## Code Style
 
-- Write **Python 3.11+** — use modern syntax (`match`, `|` union types, `tomllib`, etc.) where appropriate
-- Always include **type hints** on function signatures
-- Use **Google-style docstrings** for public functions and classes
-- Format with **Ruff** conventions — 88 char line length, double quotes
+- Write **TypeScript 5+** — use modern syntax (`satisfies`, `const` type parameters, etc.) where appropriate
+- Always include **type annotations** on function signatures and exported values
+- Use **JSDoc comments** for all public functions, types, and exported constants
+- Format with **Prettier** conventions — 2 space indent, single quotes, trailing commas
 - Prefer **explicit and readable** over clever and compact
 
 ### Good example
 
-```python
-def load_config(path: Path) -> dict[str, str]:
-    """Load configuration from a TOML file.
-
-    Args:
-        path: Path to the TOML configuration file.
-
-    Returns:
-        Dictionary of configuration key-value pairs.
-
-    Raises:
-        FileNotFoundError: If the config file does not exist.
-    """
-    if not path.exists():
-        raise FileNotFoundError(f"Config file not found: {path}")
-    with path.open("rb") as f:
-        return tomllib.load(f)
+```typescript
+/**
+ * Converts a hex colour string to an RGBA hex string with an alpha channel.
+ *
+ * @param hex - A 6-character hex colour string (e.g. `#B7C3F3`)
+ * @param opacity - Opacity value between 0 and 1
+ * @returns Hex string with two-character alpha suffix (e.g. `#B7C3F380`)
+ */
+export function alpha(hex: string, opacity: number): string {
+  const clamped = Math.max(0, Math.min(1, opacity));
+  const alphaByte = Math.round(clamped * 255)
+    .toString(16)
+    .padStart(2, '0')
+    .toUpperCase();
+  return `${hex}${alphaByte}`;
+}
 ```
 
 ### Avoid
 
-```python
-# No type hints, no docstring, bare except
-def load_config(path):
-    try:
-        return tomllib.load(open(path, "rb"))
-    except:
-        return {}
+```typescript
+// No types, no doc, magic numbers
+export const a = (h, o) => h + Math.round(o * 255).toString(16).padStart(2, '0');
 ```
 
 ---
 
-## Data Engineering Specifics
+## Theme Authoring
 
-When working with data pipeline code:
+When working on theme files in `src/themes/`:
 
-- Prefer **incremental patterns** over full refreshes where possible
-- Always handle **null / None values** explicitly — do not assume clean data
-- Use **logging** to record row counts, durations, and errors at key pipeline stages
-- SQL should be in **separate `.sql` files** or **dbt models**, not embedded as long strings in Python
-- For Airflow DAGs: keep tasks small, use `@task` decorator style, avoid `BashOperator` unless necessary
-
----
-
-## Testing
-
-When generating or suggesting tests:
-
-- Use `pytest` — not `unittest`
-- Create fixtures in `conftest.py`
-- Use small, realistic fixture data — not arbitrary random values
-- Name tests descriptively: `test_load_config_raises_when_file_missing`
-- Cover the happy path and at least one failure/edge case per function
+- **Never edit `themes/*.json` directly** — all changes go in the TypeScript source, then run `npm run generate`
+- All colour values must reference **`brand`** from `src/palette.ts` — do not hardcode hex strings in theme files
+- Use the **`alpha()`** helper for any colour that needs opacity — do not manually append hex alpha bytes
+- Each theme export must conform to the **`ThemeDefinition`** interface from `src/types.ts`
+- When adding a new theme, register it in both `src/generate.ts` and `src/index.ts`, and add a corresponding entry to the `contributes.themes` array in `package.json`
+- Theme names must follow the established naming pattern — forge-themed, single or two-word, no generic terms like "dark" or "light" as standalone names
 
 ---
 
 ## What Copilot Should Not Do
 
-- Do not suggest `requirements.txt` changes without noting them explicitly
-- Do not use deprecated libraries (e.g. `distutils`, `optparse`, `imp`)
-- Do not generate `print()` statements for logging — use `logging.getLogger(__name__)`
-- Do not leave `# TODO` comments in generated code — complete the implementation
-- Do not use `os.path` — use `pathlib.Path`
-- Do not suggest `pandas` for data that should stay in the warehouse — push computation down
+- Do not hardcode hex colour values in theme files — always use `brand.*` or `alpha(brand.*, n)`
+- Do not edit files in `themes/` directly — these are generated artefacts
+- Do not add new dependencies without a clear reason — this is a zero-runtime-dependency project
+- Do not use `any` types — use proper `ThemeDefinition`, `TokenColor`, and `WorkbenchColors` types
+- Do not leave `// TODO` comments in generated code — complete the implementation
+- Do not suggest changes to `package.json` `contributes.themes` without also updating `src/generate.ts` and `src/index.ts`
 
 ---
 
@@ -100,3 +84,5 @@ Optional longer body explaining why, not what.
 
 Closes #<issue>
 ```
+
+Common scopes for this repo: `theme`, `palette`, `generator`, `ci`, `icon`, `docs`

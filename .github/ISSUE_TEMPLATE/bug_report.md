@@ -33,7 +33,6 @@ Paste error output here
 | Field | Value |
 |---|---|
 | OS | |
-| Python version | |
 | Package version | |
 | Relevant dependencies | |
 

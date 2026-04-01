@@ -1,8 +1,8 @@
 version: 2
 
 updates:
-  # ── Python dependencies ──────────────────────────────────────────────
-  - package-ecosystem: "pip"
+  # ── npm dependencies ─────────────────────────────────────────────────
+  - package-ecosystem: "npm"
     directory: "/"
     schedule:
       interval: "weekly"
@@ -18,10 +18,10 @@ updates:
     groups:
       dev-dependencies:
         patterns:
-          - "ruff"
-          - "mypy"
-          - "pytest*"
-          - "coverage*"
+          - "typescript"
+          - "ts-node"
+          - "@types/*"
+          - "@vscode/vsce"
 
   # ── GitHub Actions ───────────────────────────────────────────────────
   - package-ecosystem: "github-actions"

@@ -1,0 +1,55 @@
+{
+  "name": "forge-themes",
+  "displayName": "Forge Themes",
+  "description": "A VS Code colour theme collection built on the Fynes Forge brand palette — Forge, Dayforge, Hearthforge and Cold Forge.",
+  "version": "1.0.0",
+  "publisher": "fynes-forge",
+  "engines": { "vscode": "^1.75.0" },
+  "categories": ["Themes"],
+  "keywords": ["theme", "dark", "light", "forge", "fynes", "lavender", "steel", "ember"],
+  "icon": "resources/icon.png",
+  "galleryBanner": {
+    "color": "#1C2329",
+    "theme": "dark"
+  },
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/fynes-forge/forge-themes"
+  },
+  "contributes": {
+    "themes": [
+      {
+        "label": "Forge",
+        "uiTheme": "vs-dark",
+        "path": "./themes/forge-color-theme.json"
+      },
+      {
+        "label": "Dayforge",
+        "uiTheme": "vs",
+        "path": "./themes/dayforge-color-theme.json"
+      },
+      {
+        "label": "Hearthforge",
+        "uiTheme": "vs-dark",
+        "path": "./themes/hearthforge-color-theme.json"
+      },
+      {
+        "label": "Cold Forge",
+        "uiTheme": "vs-dark",
+        "path": "./themes/cold-forge-color-theme.json"
+      }
+    ]
+  },
+  "scripts": {
+    "generate": "ts-node src/generate.ts",
+    "package": "npm run generate && vsce package",
+    "publish": "npm run generate && vsce publish"
+  },
+  "devDependencies": {
+    "@types/node": "^20.0.0",
+    "@vscode/vsce": "^2.24.0",
+    "ts-node": "^10.9.2",
+    "typescript": "^5.4.5"
+  }
+}

@@ -32,19 +32,8 @@ Closes #<!-- issue number -->
 <!-- Describe how you tested this. -->
 
 - [ ] Added / updated unit tests
-- [ ] All existing tests pass locally (`pytest`)
+- [ ] All existing tests pass locally
 - [ ] Tested manually — describe how:
-
----
-
-## Code Quality
-
-- [ ] `ruff check .` passes
-- [ ] `ruff format .` applied
-- [ ] `mypy src/` passes
-- [ ] No `print()` statements left in production code
-- [ ] No hardcoded secrets or credentials
-- [ ] Docstrings added for new public functions / classes
 
 ---
 
@@ -52,7 +41,6 @@ Closes #<!-- issue number -->
 
 - [ ] README updated (if behaviour changed)
 - [ ] CHANGELOG.md updated under `[Unreleased]`
-- [ ] GETTING_STARTED.md updated (if setup steps changed)
 
 ---
 
