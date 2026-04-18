@@ -121,12 +121,12 @@ forge-themes/
 
 ### From Marketplace
 1. Open VS Code → Extensions (`Ctrl+Shift+X`)
-2. Search **Forged in Fynes**
+2. Search **Forge Themes**
 3. Install, then open **Preferences: Color Theme** (`Ctrl+K Ctrl+T`)
 4. Select your variant
 
 ### From VSIX
-1. Download the latest `.vsix` from [Releases](https://github.com/fynes-forge/forged-in-fynes/releases)
+1. Download the latest `.vsix` from [Releases](https://github.com/fynes-forge/forge-themes/releases)
 2. Extensions panel → `...` → **Install from VSIX**
 
 ---
